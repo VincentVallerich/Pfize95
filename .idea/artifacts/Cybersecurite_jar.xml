@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Cybersecurite:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Cybersecurite_jar</output-path>
+    <root id="archive" name="Cybersecurite.jar">
+      <element id="module-output" name="Cybersecurite" />
+      <element id="dir-copy" path="$USER_HOME$/.jdks/corretto-1.8.0_275/bin" />
+    </root>
+  </artifact>
+</component>
