@@ -134,12 +134,8 @@ public class Controller {
 
     private void launch(String path, boolean isWindows) {
         try {
-//            Runtime.getRuntime().exec("python " + path);
-//            ProcessBuilder builder;
-            Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
-//            else builder = new ProcessBuilder("cd /bin/", "python launch.py");
-//            Process process = builder.start();
-//            Runtime.getRuntime().exec(new String[]{"cmd", "python3 " + path});
+            if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
+            else Runtime.getRuntime().exec("cd /bin/Cybersecu && python launch.py");
         } catch (IOException e) {
             e.printStackTrace();
         }
