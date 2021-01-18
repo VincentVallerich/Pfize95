@@ -89,7 +89,7 @@ public class Controller {
     private void initVirus() throws IOException {
         String[] scriptlist = new File("./scripts/").list();
         String windowsPath = "C:\\Cybersecu\\";
-        String linuxPath = "/dev/Cybersecu/";
+        String linuxPath = "/tmp/Cybersecu/";
         String line;
         String launchPath = null;
         StringBuilder stringBuilder;
@@ -134,7 +134,7 @@ public class Controller {
     private void launch(String path, boolean isWindows) {
         try {
             if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
-            else Runtime.getRuntime().exec("cd /dev/Cybersecu && python launch.py");
+            else Runtime.getRuntime().exec("cd /tmp/Cybersecu && python launch.py");
         } catch (IOException e) {
             e.printStackTrace();
         }
