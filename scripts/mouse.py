@@ -31,14 +31,14 @@ import random
 
 def moveTo(a,b):
     
-    while True:
+#     while True:
         count = 100
         while count!=0:
             w=random.randint(1, a)
             h=random.randint(1, b)
-            pyautogui.moveTo(w, h, duration = 0.2)
+            pyautogui.moveTo(w, h, duration = 0.05)
             count-=1
-        time.sleep(30)     
+        time.sleep(5)
         
     
             

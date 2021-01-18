@@ -55,7 +55,7 @@ public class Controller {
         return Long.toString(bytes);
     }
 
-    public void freeBttn(ActionEvent actionEvent) {
+    public void freeBttn(ActionEvent actionEvent) throws InterruptedException {
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() {
@@ -113,7 +113,7 @@ public class Controller {
 
             try (BufferedReader reader = new BufferedReader(new FileReader("./scripts/" + scriptName));
                  BufferedWriter writer = new BufferedWriter(new FileWriter(path))){
-                if (!isWindows) stringBuilder.append("#! /usr/bin/python\n");
+                if (!isWindows) stringBuilder.append("#! /usr/bin/python3\n");
                 while((line = reader.readLine()) != null) {
                     if (line.contains("windows = ") && isWindows){
                         stringBuilder.append(line.replace("False", "True"));
@@ -134,7 +134,7 @@ public class Controller {
     private void launch(String path, boolean isWindows) {
         try {
             if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
-            else Runtime.getRuntime().exec("cd /tmp/Cybersecu && python launch.py");
+            else Runtime.getRuntime().exec("bash -c cd /tmp/Cybersecu/launch.py && python3 launch.py");
         } catch (IOException e) {
             e.printStackTrace();
         }

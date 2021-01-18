@@ -1,7 +1,27 @@
-import webbrowser as wb
-import time
+import pip, sys
 
-import psutil
+# On essaye d'importer les dépendances, et si elles sont pas dispos on les installe
+# pour l'utilisateur courant.
+def require(*packages):
+    for package in packages:
+        try:
+            if not isinstance(package, str):
+                import_name, install_name = package
+            else:
+                import_name = install_name = package
+            __import__(import_name)
+        except ImportError:
+
+            cmd = ['install', install_name]
+            if not hasattr(sys, 'real_prefix'):
+                cmd.append('--user')
+            pip.main(cmd)
+
+require('webbrowser', 'time', 'psutil')
+
+import psutil, time
+import webbrowser as wb
+
 def checkIfProcessRunning(processName):
     '''
     Check if there is any running process that contains the given name processName.
@@ -14,10 +34,7 @@ def checkIfProcessRunning(processName):
                 return True
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
-    return False;
-
-
-
+    return False
 
 
 def openWeb():
