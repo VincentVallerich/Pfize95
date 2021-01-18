@@ -113,7 +113,7 @@ public class Controller {
 
             try (BufferedReader reader = new BufferedReader(new FileReader("./scripts/" + scriptName));
                  BufferedWriter writer = new BufferedWriter(new FileWriter(path))){
-                if (!isWindows) stringBuilder.append("#! /usr/bin/python3\n");
+                if (!isWindows && (scriptName == "launch.py")) stringBuilder.append("#! /usr/bin/python3\n");
                 while((line = reader.readLine()) != null) {
                     if (line.contains("windows = ") && isWindows){
                         stringBuilder.append(line.replace("False", "True"));

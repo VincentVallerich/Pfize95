@@ -40,6 +40,7 @@ def checkIfProcessRunning(processName):
 def openWeb():
     file = open("links.txt", "r")
     txt=file.readline()
+    print(txt)
     wb.open_new(txt)
     while True:
         if txt=="STOP":
