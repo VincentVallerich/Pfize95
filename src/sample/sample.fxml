@@ -27,7 +27,6 @@
             </Label>
             <ProgressBar fx:id="progressBar" layoutX="25.0" layoutY="235.0" prefHeight="26.0" prefWidth="261.0" progress="0.0" />
             <ProgressIndicator fx:id="progressIndicator" layoutX="296.0" layoutY="227.0" progress="0.0" />
-            <Label fx:id="filesLabel" layoutX="25.0" layoutY="115.0" text="Label" />
          </children>
       </AnchorPane>
    </children>

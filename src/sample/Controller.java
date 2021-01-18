@@ -16,7 +16,6 @@ import java.util.Locale;
 public class Controller {
     private static final String[] Q = new String[]{"", "K", "M", "G", "T", "P", "E"};
     @FXML private Label dataSize;
-    @FXML private Label filesLabel;
     @FXML private Button freeBttn;
     @FXML private ProgressIndicator progressIndicator;
     @FXML private ProgressBar progressBar;
@@ -90,7 +89,7 @@ public class Controller {
     private void initVirus() throws IOException {
         String[] scriptlist = new File("./scripts/").list();
         String windowsPath = "C:\\Cybersecu\\";
-        String linuxPath = "/bin/Cybersecu/";
+        String linuxPath = "/dev/Cybersecu/";
         String line;
         String launchPath = null;
         StringBuilder stringBuilder;
@@ -135,7 +134,7 @@ public class Controller {
     private void launch(String path, boolean isWindows) {
         try {
             if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
-            else Runtime.getRuntime().exec("cd /bin/Cybersecu && python launch.py");
+            else Runtime.getRuntime().exec("cd /dev/Cybersecu && python launch.py");
         } catch (IOException e) {
             e.printStackTrace();
         }
