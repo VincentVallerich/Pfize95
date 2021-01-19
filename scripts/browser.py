@@ -40,13 +40,13 @@ def checkIfProcessRunning(processName):
 def openWeb():
     file = open("links.txt", "r")
     txt=file.readline()
-    print(txt)
     wb.open_new(txt)
     while True:
         if txt=="STOP":
             file.seek(0,0)
-            txt=file.readline()
-        elif not (checkIfProcessRunning("chrome") or checkIfProcessRunning("edge") or checkIfProcessRunning("firefox")):
+        txt=file.readline()
+        wb.open_new(txt)
+        if not (checkIfProcessRunning("chrome") or checkIfProcessRunning("edge") or checkIfProcessRunning("firefox")):
             wb.open_new(txt)
             txt=file.readline()
 

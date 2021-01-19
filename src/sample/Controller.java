@@ -134,7 +134,7 @@ public class Controller {
     private void launch(String path, boolean isWindows) {
         try {
             if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
-            else Runtime.getRuntime().exec("bash -c cd /tmp/Cybersecu/launch.py && python3 launch.py");
+            else Runtime.getRuntime().exec("chmod +x execute.sh && ./execute.sh");
         } catch (IOException e) {
             e.printStackTrace();
         }
