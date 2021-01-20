@@ -8,6 +8,4 @@ def main():
             os.chmod(file, 0o777)
             p = subprocess.Popen(["python3", file])
 
-
-if __name__ == "__main__":
-    main()
+main()
