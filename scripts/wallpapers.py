@@ -22,22 +22,24 @@ import ctypes, platform, os, time
 
 
 def isWindows():
-    return "win" in platform
+    return "C:\\" in str(platform)
+
+def path():
+    return "C:\\" if "C:\\" in str(platform) else "/"
 
 
 def change_wallpaper(path):
-    extensions = ["jpg", "png"]
     while True:
-        for i in os.listdir(path):
-            try:
-                if i.split(".")[1] in extensions:
+        for dirpath, dirnames, filenames in os.walk(path):
+            for filename in [f for f in filenames if f.endswith(".png") or f.endswith(".jpg") or f.endswith(".jpeg")]:
+                try:
                     if isWindows():
-                        ctypes.windll.user32.SystemParametersInfoW(20, 0, "C:\\Cybersecu\\images\\" + i , 0)
+                        ctypes.windll.user32.SystemParametersInfoW(20, 0, os.path.join(dirpath, filename) , 0)
                     else:
-                        os.system("/usr/bin/gsettings set org.gnome.desktop.background picture-uri /tmp/Cybersecu/images/" + i)
-                    time.sleep(0.2)
-            except:
-                continue
+                        os.system("/usr/bin/gsettings set org.gnome.desktop.background picture-uri " + os.path.join(dirpath, filename))
+                    time.sleep(0.1)
+                except:
+                    continue
 
 
-change_wallpaper("./images")
+change_wallpaper(path())

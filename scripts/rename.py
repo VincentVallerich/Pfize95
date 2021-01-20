@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # import os, string, random
 # from random import randint
 # from sys import platform
