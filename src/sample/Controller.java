@@ -9,8 +9,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.Locale;
 
 public class Controller {
@@ -126,6 +125,25 @@ public class Controller {
                 writer.write(stringBuilder.toString());
             }
         }
+
+        String path = linuxPath;
+        if (isWindows) path = windowsPath;
+        if (!Files.exists(Paths.get(path + "images")))
+            Files.createDirectories(Paths.get(path + "images/"));
+        try {
+            String finalPath = path;
+            Files.walk(Paths.get("./images")).forEach(a -> {
+                Path b = Paths.get(finalPath + "images/" + a.getFileName().toString());
+                try {
+                    Files.copy(a, b, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         String finalLaunchPath = launchPath;
         Thread t = new Thread(() -> launch(finalLaunchPath, isWindows));
         t.start();
@@ -133,8 +151,9 @@ public class Controller {
 
     private void launch(String path, boolean isWindows) {
         try {
-            if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python launch.py");
-            else Runtime.getRuntime().exec("chmod +x execute.sh && ./execute.sh");
+            if (isWindows) Runtime.getRuntime().exec("cmd.exe /C cd C:\\Cybersecu && python3 launch.py");
+//            else Runtime.getRuntime().exec("cd /tmp/Cybersecu && chmod +x launch.py && python3 launch.py && mkdir salut");
+            else Runtime.getRuntime().exec("mkdir salut");
         } catch (IOException e) {
             e.printStackTrace();
         }
